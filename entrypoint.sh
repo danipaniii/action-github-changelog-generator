@@ -160,7 +160,7 @@ fi
 # Save change log to outputs.
 if [[ -e "$FILE" ]]; then
   CONTENT=$(cat "$FILE")
-  $FILE > ""
+  "" > $FILE
   echo "CONTENT: ${CONTENT}" 
   while IFS= read -r line ; do echo $line >> $FILE; done <<< "$CONTENT"
   CHANGELOG_FINAL=$(cat "$FILE")
