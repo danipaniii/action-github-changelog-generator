@@ -160,8 +160,10 @@ fi
 # Save change log to outputs.
 if [[ -e "$FILE" ]]; then
   CONTENT=$(cat "$FILE")
+  $FILE > ""
   echo "CONTENT: ${CONTENT}" 
-  while IFS= read -r line ; do echo $line >> $CHANGELOG_FINAL; done <<< "$CONTENT"
+  while IFS= read -r line ; do echo $line >> $FILE; done <<< "$CONTENT"
+  CHANGELOG_FINAL=$(cat "$FILE")
   echo "FINAL_CHANGELOG: ${CHANGELOG_FINAL}"
   echo "changelog={$CHANGELOG_FINAL}" >> $GITHUB_OUTPUT
 
