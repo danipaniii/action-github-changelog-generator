@@ -160,5 +160,6 @@ fi
 # Save change log to outputs.
 if [[ -e "$FILE" ]]; then
   CONTENT=$(cat "$FILE")
+  echo "CONTENT: ${CONTENT}"
   echo "changelog={$CONTENT}" >> $GITHUB_OUTPUT
 fi
