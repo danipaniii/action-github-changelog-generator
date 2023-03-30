@@ -161,9 +161,10 @@ fi
 if [[ -e "$FILE" ]]; then
   CONTENT=$(cat "$FILE")
   # Escape as per https://github.community/t/set-output-truncates-multiline-strings/16852/3.
-  CONTENT="${CONTENT//'%'/'&#37;'}"
-  CONTENT="${CONTENT//'\n'/$'\n'}"
-  CONTENT="${CONTENT//$'\r'/'&amp;'}"
+  #CONTENT="${CONTENT//'%'/'&#37;'}"
+  #CONTENT="${CONTENT//'\n'/$'\n'}"
+  #CONTENT="${CONTENT//$'\r'/'&amp;'}"
+  CONTENT="${CONTENT@E}"
   echo "CONTENT: ${CONTENT}"
   echo "changelog=$CONTENT" >> $GITHUB_OUTPUT
 fi
