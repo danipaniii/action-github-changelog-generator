@@ -160,8 +160,9 @@ fi
 # Save change log to outputs.
 if [[ -e "$FILE" ]]; then
   CONTENT=$(cat "$FILE")
-  echo "CONTENT: ${CONTENT}" 
-  while IFS= read -r line ; do echo $line >> "$CHANGELOG_FINAL"; done <<< "$CONTENT"
-  echo "FINAL_CHANGELOG: $CHANGELOG_FINAL"
-  echo "changelog=$CHANGELOG_FINAL" >> $GITHUB_OUTPUT
+  # Escape as per https://github.community/t/set-output-truncates-multiline-strings/16852/3.
+  CONTENT="${CONTENT//'%'/'%25'}"
+  CONTENT="${CONTENT//$'\n'/'%0A'}"
+  CONTENT="${CONTENT//$'\r'/'%0D'}"
+  echo "changelog=$CONTENT" >> $GITHUB_OUTPUT
 fi
