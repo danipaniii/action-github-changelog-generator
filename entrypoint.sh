@@ -163,5 +163,5 @@ if [[ -e "$FILE" ]]; then
   CHANGELOG_FINAL=""
   echo "CONTENT: ${CONTENT}" 
   while IFS= read -r line ; do echo $line >>  $CHANGELOG_FINAL; done <<< "$CONTENT"
-  echo "changelog={$CHANGELOG_FINAL}" >> $GITHUB_OUTPUT
+  echo "changelog={$CHANGELOG_FINAL}" >> $env:GITHUB_OUTPUT
 fi
