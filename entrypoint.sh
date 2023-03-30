@@ -160,11 +160,16 @@ fi
 # Save change log to outputs.
 if [[ -e "$FILE" ]]; then
   CONTENT=$(cat "$FILE")
+  EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
+  echo "$CONTENT<<$EOF" >> $GITHUB_ENV
+  echo "${CONTENT}"
+  echo "$EOF" >> $GITHUB_ENV
   echo "" > $FILE
+  echo "FILE: ${FILE}"
   echo "CONTENT: ${CONTENT}" 
   while IFS= read -r line ; do echo $line >> $FILE; done <<< "$CONTENT"
   CHANGELOG_FINAL=$(cat "$FILE")
   echo "FINAL_CHANGELOG: ${CHANGELOG_FINAL}"
-  echo "changelog={$CHANGELOG_FINAL}" >> $GITHUB_OUTPUT
+  echo "changelog=$CHANGELOG_FINAL" >> $GITHUB_OUTPUT
 
 fi
