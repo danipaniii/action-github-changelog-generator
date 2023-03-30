@@ -161,7 +161,7 @@ fi
 if [[ -e "$FILE" ]]; then
   CONTENT=$(cat "$FILE")
   echo "CONTENT: ${CONTENT}" 
-  while IFS= read -r line ; do echo $line >> $CHANGELOG_FINAL; done <<< "$CONTENT"
+  while IFS= read -r line ; do echo $line >> CHANGELOG_FINAL; done <<< "$CONTENT"
   echo "FINAL_CHANGELOG: ${CHANGELOG_FINAL}"
   echo "changelog=$CHANGELOG_FINAL" >> $GITHUB_OUTPUT
 fi
