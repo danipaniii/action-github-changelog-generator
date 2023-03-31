@@ -167,6 +167,7 @@ if [[ -e "$FILE" ]]; then
   # echo "CONTENT: ${CONTENT}"
   # touch CHANGELOG.md
   # CHANGELOG="CHANGELOG.md"
+  echo "changelog=${CONTENT}" >> $GITHUB_OUTPUT
   while IFS= read -r line ; do echo $line >> $GITHUB_OUTPUT; done <<< "$CONTENT"
   # TEST=$(cat "$CHANGELOG")
   # echo "TEST ${TEST}"
