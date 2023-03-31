@@ -168,5 +168,6 @@ if [[ -e "$FILE" ]]; then
   touch CHANGELOG.md
   CHANGELOG="CHANGELOG.md"
   while IFS= read -r line ; do echo $line >> $CHANGELOG; done <<< "$CONTENT"
+  echo "CHANGELOG: ${CHANGELOG}"
   echo "changelog=${CHANGELOG}" >> $GITHUB_OUTPUT
 fi
