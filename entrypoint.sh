@@ -165,5 +165,8 @@ if [[ -e "$FILE" ]]; then
   CONTENT="${CONTENT//$'\n'/'<br>'}"
   CONTENT="${CONTENT//$'\r'/'&amp;'}"
   echo "CONTENT: ${CONTENT}"
-  echo "changelog=${CONTENT}" >> $GITHUB_OUTPUT
+  touch CHANGELOG.md
+  CHANGELOG="CHANGELOG.md"
+  while IFS= read -r line ; do echo $line >> $CHANGELOG; done <<< "$CONTENT"
+  echo "changelog=${CHANGELOG}" >> $GITHUB_OUTPUT
 fi
