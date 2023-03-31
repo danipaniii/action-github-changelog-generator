@@ -171,5 +171,5 @@ if [[ -e "$FILE" ]]; then
   TEST=$(cat "$CHANGELOG")
   echo "TEST ${TEST}"
   echo 'CHANGELOG: ${cat "$CHANGELOG"}'
-  echo "changelog=${TEST}" >> $GITHUB_OUTPUT
+  echo -e "changelog=${TEST}" >> $GITHUB_OUTPUT
 fi
