@@ -162,7 +162,7 @@ if [[ -e "$FILE" ]]; then
   CONTENT=$(cat "$FILE")
   # Escape as per https://github.community/t/set-output-truncates-multiline-strings/16852/3.
   CONTENT="${CONTENT//'%'/'&#37;'}"
-  CONTENT="${CONTENT//$'\n'/'&#13;'}"
+  CONTENT="${CONTENT//$'\n'/'<br>'}"
   CONTENT="${CONTENT//$'\r'/'&amp;'}"
   echo "CONTENT: ${CONTENT}"
   # touch CHANGELOG.md
