@@ -164,7 +164,7 @@ if [[ -e "$FILE" ]]; then
   CONTENT="${CONTENT//'%'/'&#37;'}"
   CONTENT="${CONTENT//$'\n'/'&#13;'}"
   CONTENT="${CONTENT//$'\r'/'&amp;'}"
-  # echo "CONTENT: ${CONTENT}"
+  echo "CONTENT: ${CONTENT}"
   # touch CHANGELOG.md
   # CHANGELOG="CHANGELOG.md"
   # while IFS= read -r line ; do echo $line >> $CHANGELOG; done <<< "$CONTENT"
