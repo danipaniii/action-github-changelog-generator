@@ -160,6 +160,10 @@ fi
 # Save change log to outputs.
 if [[ -e "$FILE" ]]; then
   CONTENT=$(cat "$FILE")
+  DELIMITER="$(openssl ramd -hex 8)"
+  echo "changelog<<${DELIMITER}" >> "${GITHUB_OUTPUT}"
+  echo "${CONTENT}" >> "${GITHUB_OUTPUT}"
+  echo "${DELIMITER}" >> "${GITHUB_OUTPUT}"
   # Escape as per https://github.community/t/set-output-truncates-multiline-strings/16852/3.
   # CONTENT="${CONTENT//'%'/'&#37;'}"
   # CONTENT="${CONTENT//$'\n'/'<br>'}"
@@ -167,8 +171,8 @@ if [[ -e "$FILE" ]]; then
   # echo "CONTENT: ${CONTENT}"
   # touch CHANGELOG.md
   # CHANGELOG="CHANGELOG.md"
-  echo "changelog=${CONTENT}" >> $GITHUB_OUTPUT
-  while IFS= read -r line ; do echo $line >> $GITHUB_OUTPUT; done <<< "$CONTENT"
+  # echo "changelog=${CONTENT}" >> $GITHUB_OUTPUT
+  # while IFS= read -r line ; do echo $line >> $GITHUB_OUTPUT; done <<< "$CONTENT"
   # TEST=$(cat "$CHANGELOG")
   # echo "TEST ${TEST}"
   # echo 'CHANGELOG: ${cat "$CHANGELOG"}'
