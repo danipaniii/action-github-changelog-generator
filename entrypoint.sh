@@ -160,22 +160,9 @@ fi
 # Save change log to outputs.
 if [[ -e "$FILE" ]]; then
   CONTENT=$(cat "$FILE")
+  # As per https://github.com/orgs/community/discussions/26288#discussioncomment-3876281 and https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions
   DELIMITER=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
   echo "changelog<<${DELIMITER}" >> "${GITHUB_OUTPUT}"
   echo "${CONTENT}" >> "${GITHUB_OUTPUT}"
   echo "${DELIMITER}" >> "${GITHUB_OUTPUT}"
-  # Escape as per https://github.community/t/set-output-truncates-multiline-strings/16852/3.
-  # CONTENT="${CONTENT//'%'/'&#37;'}"
-  # CONTENT="${CONTENT//$'\n'/'<br>'}"
-  # CONTENT="${CONTENT//$'\r'/'&amp;'}"
-  # echo "CONTENT: ${CONTENT}"
-  # touch CHANGELOG.md
-  # CHANGELOG="CHANGELOG.md"
-  # echo "changelog=${CONTENT}" >> $GITHUB_OUTPUT
-  # while IFS= read -r line ; do echo $line >> $GITHUB_OUTPUT; done <<< "$CONTENT"
-  # TEST=$(cat "$CHANGELOG")
-  # echo "TEST ${TEST}"
-  # echo 'CHANGELOG: ${cat "$CHANGELOG"}'
-  # echo -e "changelog=${TEST}" >> $GITHUB_OUTPUT
-  # echo "changelog=${CONTENT}" >> $GITHUB_OUTPUT
 fi
