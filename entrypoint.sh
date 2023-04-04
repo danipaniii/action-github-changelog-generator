@@ -160,7 +160,7 @@ fi
 # Save change log to outputs.
 if [[ -e "$FILE" ]]; then
   CONTENT=$(cat "$FILE")
-  DELIMITER="$(openssl rand -hex 8)"
+  DELIMITER=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
   echo "changelog<<${DELIMITER}" >> "${GITHUB_OUTPUT}"
   echo "${CONTENT}" >> "${GITHUB_OUTPUT}"
   echo "${DELIMITER}" >> "${GITHUB_OUTPUT}"
